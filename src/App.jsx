@@ -1,7 +1,7 @@
-import { Button } from "./components/ui/button"
+import MainContainer from "./views/MainContainer/MainContainer"
 function App() {
   return (
-    <></>
+    <MainContainer/>
   )
 }
 
