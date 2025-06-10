@@ -73,33 +73,35 @@ const statsData = [
 
 const tabComponents = {
   overview: <Overview statsData={statsData} />,
-  agents: <Agents/>,
-  calls: <Calls/>,
-  reports: <Reports/>
+  agents: <Agents />,
+  calls: <Calls />,
+  reports: <Reports />
 };
 
 const Dashboard = () => {
-  
+
   return (
-    <div className="dashboard">
-      <Tabs defaultValue="overview">
-        <TabsList>
+    <div className="w-[90%] p-3 mx-auto">
+      <div className="dashboard border border-slate-400/30 rounded-md p-3 bg-slate-900/50">
+        <Tabs defaultValue="overview">
+          <TabsList className="border border-slate-400/30">
+            {tabsData.map((tab) => (
+              <TabsTrigger key={tab.value} value={tab.value}>
+                {tab.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
           {tabsData.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value}>
-              {tab.label}
-            </TabsTrigger>
+            <TabsContent
+              key={tab.value}
+              value={tab.value}
+              className="mx-auto w-[100%]"
+            >
+              {tabComponents[tab.value]}
+            </TabsContent>
           ))}
-        </TabsList>
-        {tabsData.map((tab) => (
-          <TabsContent
-            key={tab.value}
-            value={tab.value}
-            className="mt-6 mx-auto w-[80%] "
-          >
-           {tabComponents[tab.value]}
-          </TabsContent>
-        ))}
-      </Tabs>
+        </Tabs>
+      </div>
     </div>
   );
 };

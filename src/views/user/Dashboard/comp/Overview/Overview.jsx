@@ -1,12 +1,14 @@
+import { Card } from "@/components/ui/card";
+
 const Overview = ({ statsData }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-2">
       {statsData.map((stat, index) => {
         const IconComponent = stat.icon;
         return (
-          <div
+          <Card
             key={index}
-            className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 hover:bg-gray-900/70 transition-colors"
+            className="bg-slate-900/50 border border-slate-500/30 rounded-md p-3 hover:bg-gray-900/70 transition-colors shadow-md"
           >
             <div className="flex items-start justify-between mb-4">
               <div className="flex-1">
@@ -32,7 +34,7 @@ const Overview = ({ statsData }) => {
                 <IconComponent size={20} className="text-white" />
               </div>
             </div>
-          </div>
+          </Card>
         );
       })}
     </div>

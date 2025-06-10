@@ -78,14 +78,14 @@ export const agentsColumns = [
     id: "actions",
     enableHiding: false,
     cell: () => {
-   
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button variant="ghost" className="h-8 w-8 p-0">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal />
-            </button> 
+            </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
@@ -95,5 +95,52 @@ export const agentsColumns = [
         </DropdownMenu>
       );
     },
+  },
+];
+
+export const callsColumn = [
+  {
+    accessorKey: "callID",
+    header: "Call ID",
+    cell: ({ row }) => <div>{row.getValue("callID")}</div>,
+  },
+  {
+    accessorKey: "agent",
+    header: "Agent",
+    cell: ({ row }) => <div>{row.getValue("agent")}</div>,
+  },
+  {
+    accessorKey: "caller",
+    header: "Caller",
+    cell: ({ row }) => <div>{row.getValue("caller")}</div>,
+  },
+  {
+    accessorKey: "startTime",
+    header: "Start Time",
+    cell: ({ row }) => <div>{row.getValue("startTime")}</div>,
+  },
+  {
+    accessorKey: "endTime",
+    header: "End Time",
+    cell: ({ row }) => <div>{row.getValue("endTime")}</div>,
+  },
+  {
+    accessorKey: "duration",
+    header: "Duration",
+    cell: ({ row }) => <div>{row.getValue("duration")}</div>,
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => <div>{row.getValue("status")}</div>,
+  },
+  {
+    accessorKey: "endReason",
+    header: "End Reason",
+    cell: ({ row }) => (
+      <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded">
+        {row.getValue("endReason")}
+      </span>
+    ),
   },
 ];
