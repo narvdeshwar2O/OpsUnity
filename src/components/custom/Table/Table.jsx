@@ -7,7 +7,13 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-// import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+
 import {
   Table,
   TableBody,
@@ -16,12 +22,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import CallDetails from "@/views/user/Dashboard/comp/Calls/comp/CallDetails";
+import { Button } from "@/components/ui/button";
 
-function CustomTable({columns, row}) {
+function CustomTable({ columns, row }) {
   const [sorting, setSorting] = useState([]);
   const [columnFilters, setColumnFilters] = useState([]);
   const [columnVisibility, setColumnVisibility] = useState({});
   const [rowSelection, setRowSelection] = useState({});
+  const [openDialog, setOpenDialog] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+
   const table = useReactTable({
     data: row,
     columns,
@@ -40,9 +51,20 @@ function CustomTable({columns, row}) {
       rowSelection,
     },
   });
+  function handleRowClick(rowData) {
+    setSelectedRow(rowData);
+    setOpenDialog(true);
+  }
+
 
   return (
     <div className="w-full">
+      <CallDetails
+        open={openDialog}
+        onOpenChange={setOpenDialog}
+        callData={selectedRow}
+      />
+
       {/* <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -86,13 +108,13 @@ function CustomTable({columns, row}) {
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id}>
+                    <TableHead key={header.id} className="text-center">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
                     </TableHead>
                   );
                 })}
@@ -102,12 +124,14 @@ function CustomTable({columns, row}) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
+                <TableRow className="cursor-pointer"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  onClick={() => handleRowClick(row.original)}
+
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className="text-center">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -130,12 +154,24 @@ function CustomTable({columns, row}) {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="text-muted-foreground flex-1 text-sm">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
+
         <div className="space-x-2">
-         
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
+            Previous
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
+            Next
+          </Button>
         </div>
       </div>
     </div>

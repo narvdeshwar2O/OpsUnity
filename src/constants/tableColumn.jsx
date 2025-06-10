@@ -81,15 +81,14 @@ export const createAgentsColumns = ({openModal}) => [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button variant="ghost" className="h-8 w-8 p-0">
+            <button variant="ghost" className="h-8 w-8 p-0 cursor-pointer">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={openModal}>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer" onClick={openModal}>Edit</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -136,10 +135,33 @@ export const callsColumn = [
   {
     accessorKey: "endReason",
     header: "End Reason",
-    cell: ({ row }) => (
-      <span className="bg-gray-200 text-gray-800 px-2 py-1 rounded">
-        {row.getValue("endReason")}
-      </span>
-    ),
-  },
+    cell: ({ row }) => {
+      const reason = row.getValue("endReason");
+      let colorClass = "";
+
+      switch (reason) {
+        case "Customer-Ended-Call":
+          colorClass = "bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-200";
+          break;
+        case "Assistant-Said-End-Call-Phrase":
+          colorClass = "bg-blue-200 text-blue-800 dark:bg-blue-700 dark:text-blue-200";
+          break;
+        case "Customer-Did-Not-Answer":
+          colorClass = "bg-yellow-200 text-yellow-800 dark:bg-yellow-600 dark:text-yellow-100";
+          break;
+        case "Exceeded-Max-Duration":
+          colorClass = "bg-red-200 text-red-800 dark:bg-red-700 dark:text-red-100";
+          break;
+        default:
+          colorClass = "bg-zinc-200 text-zinc-800 dark:bg-zinc-600 dark:text-zinc-100";
+      }
+
+      return (
+        <span className={`px-3 py-1  text-xs font-medium h-8 w-fit mx-auto rounded-md flex items-center ${colorClass}`}>
+          {reason}
+        </span>
+      );
+    },
+  }
+
 ];

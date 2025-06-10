@@ -4,8 +4,8 @@ import Footer from "./footer/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 
 const Layout = () => {
-  const location=useLocation()
-  console.log(location)
+  const location = useLocation()
+  console.log(location.pathname)
   return (
     <>
       <Header />
@@ -14,7 +14,7 @@ const Layout = () => {
           <Outlet />
         </div>
       </main>
-      <Footer />
+      {location === "/" && <Footer />}
     </>
   );
 };
