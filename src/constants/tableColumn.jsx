@@ -1,7 +1,7 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
-export const agentsColumns = [
+export const createAgentsColumns = ({openModal}) => [
   {
     accessorKey: "name",
     header: "Name",
@@ -78,7 +78,6 @@ export const agentsColumns = [
     id: "actions",
     enableHiding: false,
     cell: () => {
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -89,7 +88,7 @@ export const agentsColumns = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem onClick={openModal}>Edit</DropdownMenuItem>
             <DropdownMenuItem>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
