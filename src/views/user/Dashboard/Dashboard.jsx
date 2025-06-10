@@ -86,7 +86,7 @@ const Dashboard = () => {
         <Tabs defaultValue="overview">
           <TabsList className="border border-slate-400/30">
             {tabsData.map((tab) => (
-              <TabsTrigger key={tab.value} value={tab.value}>
+              <TabsTrigger key={tab.value} value={tab.value} className="cursor-pointer">
                 {tab.label}
               </TabsTrigger>
             ))}
