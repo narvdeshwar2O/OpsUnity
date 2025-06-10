@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Renderer, Program, Mesh, Triangle, Vec3 } from "ogl";
-import AnimatedGradientButton from "./Button";
+import AnimatedGradientButton from "./GradientButton";
 
 export default function Orb({
   hue = 0,

@@ -3,7 +3,7 @@ import {
     Activity,
     MoveRight,
 } from "lucide-react";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/GradientButton";
 
 const section = {
     id: 4,
