@@ -59,11 +59,7 @@ function CustomTable({ columns, row }) {
 
   return (
     <div className="w-full">
-      <CallDetails
-        open={openDialog}
-        onOpenChange={setOpenDialog}
-        callData={selectedRow}
-      />
+     
 
       {/* <div className="flex items-center py-4">
         <Input
@@ -127,10 +123,10 @@ function CustomTable({ columns, row }) {
                 <TableRow className="cursor-pointer"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+
                   onClick={(e) => {
                     const clickedCell = e.target.closest('[data-column-id]');
                     const columnId = clickedCell?.getAttribute('data-column-id');
-
                     if (columnId === "endReason") {
                       handleRowClick(row.original);
                     }

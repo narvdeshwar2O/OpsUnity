@@ -69,6 +69,7 @@ const CallDetails = memo(({ open, onOpenChange, callData }) => {
     // Early return optimization
     if (!callData) return null;
 
+    console.log("open", open)
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="min-w-1/2 dark:bg-slate-900">
