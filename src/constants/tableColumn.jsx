@@ -96,7 +96,7 @@ export const createAgentsColumns = ({openModal}) => [
   },
 ];
 
-export const callsColumn = [
+export const  callsColumn  = [
   {
     accessorKey: "callID",
     header: "Call ID",
@@ -157,9 +157,9 @@ export const callsColumn = [
       }
 
       return (
-        <span className={`px-3 py-1  text-xs font-medium h-8 w-fit mx-auto rounded-md flex items-center ${colorClass}`}>
+        <button className={`px-3 py-1  text-xs font-medium h-8 w-fit mx-auto rounded-md flex items-center ${colorClass}`}>
           {reason}
-        </span>
+        </button>
       );
     },
   }
