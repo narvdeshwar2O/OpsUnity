@@ -123,11 +123,21 @@ function CustomTable({ columns, row }) {
                 <TableRow className="cursor-pointer"
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  // onClick={() => handleRowClick(row.original)}
 
+                  onClick={(e) => {
+                    const clickedCell = e.target.closest('[data-column-id]');
+                    const columnId = clickedCell?.getAttribute('data-column-id');
+                    if (columnId === "endReason") {
+                      handleRowClick(row.original);
+                    }
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="text-center">
+                    <TableCell
+                      key={cell.id}
+                      className="text-center"
+                      data-column-id={cell.column.columnDef.accessorKey}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

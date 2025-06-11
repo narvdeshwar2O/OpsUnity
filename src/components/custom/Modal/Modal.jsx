@@ -22,7 +22,7 @@ export const DialogDemo = ({
 }) => {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className={`${classContent}`}>
+      <DialogContent className={`${classContent} bg-slate-900`} >
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
